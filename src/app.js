@@ -7,6 +7,7 @@ app.use((req,res,next)=>{res.on('finish',()=>requests.inc({method:req.method,rou
 app.get('/',(req,res)=>res.send(`<h1>DevSecOps Demo</h1><p>Environment: ${environment}</p><p>Version: ${version}</p>`));
 app.get('/health',(req,res)=>res.json({status:'UP',environment,version}));
 app.get('/api/users',(req,res)=>res.json([{id:1,name:'Alice'},{id:2,name:'Bob'}]));
+app.get('/api/info',(req,res)=>res.json({name:'devsecops-demo-ready',version,environment}));
 app.get('/metrics',async(req,res)=>{res.set('Content-Type',client.register.contentType);res.end(await client.register.metrics());});
 if(require.main===module){const port=process.env.PORT||3000;app.listen(port,'0.0.0.0',()=>console.log(`Application ${environment} running on port ${port}`));}
 module.exports=app;
