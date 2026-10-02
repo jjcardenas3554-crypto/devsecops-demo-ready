@@ -3,3 +3,4 @@ coverage
 .git
 .husky
 README.md
+.env
